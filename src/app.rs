@@ -13,14 +13,15 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
         <!DOCTYPE html>
         <html lang="en">
             <head>
-                <meta charset="utf-8"/>
-                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                <meta charset="utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
                 <AutoReload options=options.clone() />
-                <HydrationScripts options/>
-                <MetaTags/>
+                <HydrationScripts options />
+                <MetaTags />
             </head>
             <body>
-                <App/>
+                <App />
             </body>
         </html>
     }
@@ -34,16 +35,16 @@ pub fn App() -> impl IntoView {
     view! {
         // injects a stylesheet into the document <head>
         // id=leptos means cargo-leptos will hot-reload this stylesheet
-        <Stylesheet id="leptos" href="/pkg/samba_canaster_web.css"/>
+        <Stylesheet id="leptos" href="/pkg/samba_canaster_web.css" />
 
         // sets the document title
-        <Title text="Welcome to Leptos"/>
+        <Title text="Welcome to Leptos" />
 
         // content for this welcome page
         <Router>
             <main>
                 <Routes fallback=|| "Page not found.".into_view()>
-                    <Route path=StaticSegment("") view=HomePage/>
+                    <Route path=StaticSegment("") view=HomePage />
                 </Routes>
             </main>
         </Router>
@@ -84,12 +85,8 @@ fn HomePage() -> impl IntoView {
         <button on:click=on_click>"Click Me: " {count}</button>
         <div
             node_ref=fixed_el
-            class="fixed px-4 py-2 border border-gray-400/30 rounded shadow hover:shadow-lg bg-[--bg] select-none cursor-move z-30"
-            // class="card card-slot"
+            class="fixed select-none cursor-move z-30 card card-slot"
             style=move || format!("touch-action: none; {}", fixed_style())
-            >
-                "Fixed 👋 Drag me!"
-                <div class="text-sm opacity-50">I am {move || fixed_x().round()} , {move || fixed_y().round()}</div>
-        </div>
+        ></div>
     }
 }

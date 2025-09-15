@@ -16,6 +16,8 @@ leptos_meta = { version = "0.8.0" }
 tokio = { version = "1", features = ["rt-multi-thread"], optional = true }
 wasm-bindgen = { version = "=0.2.101", optional = true }
 leptos-use = "0.16.2"
+reactive_stores = "0.2.5"
+web-sys = "0.3.78"
 
 [features]
 hydrate = ["leptos/hydrate", "dep:console_error_panic_hook", "dep:wasm-bindgen"]

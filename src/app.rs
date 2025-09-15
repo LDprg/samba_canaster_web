@@ -30,6 +30,7 @@ pub fn shell(options: LeptosOptions) -> impl IntoView {
 pub fn App() -> impl IntoView {
     // Provides context that manages stylesheets, titles, meta tags, etc.
     provide_meta_context();
+    provide_cards_context();
 
     view! {
         // injects a stylesheet into the document <head>
@@ -55,10 +56,10 @@ pub fn App() -> impl IntoView {
 fn HomePage() -> impl IntoView {
     view! {
         <Card card_type=CardType::Hearts(Rank::Five) />
-        <Card card_type=CardType::Spades(Rank::Two) />
-        <Card card_type=CardType::Joker(Color::Red) />
-        <Card card_type=CardType::Joker(Color::Black) />
-        <CardSlot />
-        <CardSlot />
+        // <Card card_type=CardType::Spades(Rank::Two) />
+        // <Card card_type=CardType::Joker(Color::Red) />
+        // <Card card_type=CardType::Joker(Color::Black) />
+        // <CardSlot />
+        // <CardSlot />
     }
 }

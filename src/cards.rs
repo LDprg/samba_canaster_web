@@ -1,6 +1,7 @@
 use leptos::{component, html::Div, prelude::*, view, IntoView};
 use leptos_use::{
-    core::Position, use_mouse, use_mouse_in_element, UseMouseInElementReturn, UseMouseReturn,
+    core::Position, use_mouse,
+    UseMouseReturn,
 };
 use reactive_stores::Store;
 
@@ -84,17 +85,15 @@ pub fn provide_cards_context() {
     provide_context(Store::new(CardsState::default()));
 }
 
-pub struct UseDraggableReturn {
-    style: Signal<String>,
-    position: WriteSignal<Position>,
-    selected: WriteSignal<bool>,
-}
+#[component]
+pub fn Card(card_type: CardType, position: Position) -> impl IntoView {
+    #[allow(unused)]
+    let state = expect_context::<Store<CardsState>>();
 
-pub fn use_draggable(init: Position) -> UseDraggableReturn {
     let UseMouseReturn { x, y, .. } = use_mouse();
     let (selected, set_selected) = signal(false);
-    let (cur_pos, set_cur_pos) = signal(init);
-    let (rel_pos, set_rel_pos) = signal(Position { x: 0.0, y: 0.0 });
+    let (cur_pos, set_cur_pos) = signal(position);
+    let (rel_pos, set_rel_pos) = signal(Position::default());
 
     let pos = move || {
         if selected.get() {
@@ -115,33 +114,13 @@ pub fn use_draggable(init: Position) -> UseDraggableReturn {
         }
     };
 
-    return UseDraggableReturn {
-        style: Signal::derive(move || format!("left: {}px; top: {}px;", pos().x, pos().y)),
-        position: set_cur_pos,
-        selected: set_selected,
-    };
-}
-
-#[component]
-pub fn Card(card_type: CardType) -> impl IntoView {
-    #[allow(unused)]
-    let state = expect_context::<Store<CardsState>>();
-
-    let UseMouseReturn { x, y, .. } = use_mouse();
-
-    let UseDraggableReturn {
-        style,
-        selected,
-        position,
-        ..
-    } = use_draggable(Position { x: 100.0, y: 100.0 });
-
     let mouse_up = move |_| {
-        selected.update(|n| *n = false);
-        position.update(|n| {
+        set_selected.update(|n| *n = false);
+        set_cur_pos.update(|n| {
+            let rel_pos = rel_pos.get();
             *n = Position {
-                x: x.get(),
-                y: y.get(),
+                x: x.get() - rel_pos.x,
+                y: y.get() - rel_pos.y,
             }
         });
     };
@@ -149,15 +128,12 @@ pub fn Card(card_type: CardType) -> impl IntoView {
     view! {
         <div
             class=move || {
-                format!(
-                    "fixed select-none cursor-move z-30 card {}",
-                    card_type.to_string(),
-                )
+                format!("fixed select-none cursor-move z-30 card {}", card_type.to_string())
             }
-            on:mousedown=move |_| selected.update(|n| *n = true)
+            on:mousedown=move |_| set_selected.update(|n| *n = true)
             on:mouseup=mouse_up
-            style=move || format!("touch-action: none; {}", style())
-        ></div>
+            style=move || format!("touch-action: none; left: {}px; top: {}px;", pos().x, pos().y)
+        />
     }
 }
 
@@ -167,12 +143,9 @@ pub fn CardSlot() -> impl IntoView {
     let state = expect_context::<Store<CardsState>>();
 
     let target = NodeRef::<Div>::new();
-    let UseMouseInElementReturn { is_outside, .. } = use_mouse_in_element(target);
 
     view! {
         <div node_ref=target class="card card-slot">
-            is_outside:
-            {is_outside}
         </div>
     }
 }

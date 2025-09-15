@@ -4,6 +4,7 @@ use leptos_router::{
     components::{Route, Router, Routes},
     StaticSegment,
 };
+use leptos_use::core::Position;
 
 use crate::cards::*;
 
@@ -54,5 +55,8 @@ pub fn App() -> impl IntoView {
 /// Renders the home page of your application.
 #[component]
 fn HomePage() -> impl IntoView {
-    view! { <Card card_type=CardType::Hearts(Rank::Five) /> }
+    view! {
+        <Card card_type=CardType::Hearts(Rank::Five) position=Position { x: 1000.0, y: 1000.0 } />
+        <CardSlot />
+    }
 }

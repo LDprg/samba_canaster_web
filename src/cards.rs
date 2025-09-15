@@ -1,6 +1,6 @@
 use leptos::{component, html::Div, prelude::*, view, IntoView};
 use leptos_use::{
-    core::{IntoElementMaybeSignal, Position}, use_mouse_in_element, UseMouseInElementReturn,
+    core::Position, use_mouse, use_mouse_in_element, UseMouseInElementReturn, UseMouseReturn,
 };
 use reactive_stores::Store;
 
@@ -78,45 +78,84 @@ impl CardType {
 }
 
 #[derive(Clone, Debug, Default, Store)]
-struct CardsState {
-}
+struct CardsState {}
 
 pub fn provide_cards_context() {
     provide_context(Store::new(CardsState::default()));
 }
 
-pub fn use_draggable<El, M>(target: El, init: Position) -> Signal<String>
-where
-    El: IntoElementMaybeSignal<web_sys::EventTarget, M>,
-{
-    let (position, set_position) = signal(init);
+pub struct UseDraggableReturn {
+    style: Signal<String>,
+    position: WriteSignal<Position>,
+    selected: WriteSignal<bool>,
+}
 
-    return Signal::derive(move || {
-        let pos = position.get();
-        format!("left: {}px; top: {}px;", pos.x, pos.y)
-    });
+pub fn use_draggable(init: Position) -> UseDraggableReturn {
+    let UseMouseReturn { x, y, .. } = use_mouse();
+    let (selected, set_selected) = signal(false);
+    let (cur_pos, set_cur_pos) = signal(init);
+    let (rel_pos, set_rel_pos) = signal(Position { x: 0.0, y: 0.0 });
+
+    let pos = move || {
+        if selected.get() {
+            let rel_pos = rel_pos.get();
+            Position {
+                x: x.get() - rel_pos.x,
+                y: y.get() - rel_pos.y,
+            }
+        } else {
+            let pos = cur_pos.get();
+            set_rel_pos.update(|n| {
+                *n = Position {
+                    x: x.get() - pos.x,
+                    y: y.get() - pos.y,
+                }
+            });
+            pos
+        }
+    };
+
+    return UseDraggableReturn {
+        style: Signal::derive(move || format!("left: {}px; top: {}px;", pos().x, pos().y)),
+        position: set_cur_pos,
+        selected: set_selected,
+    };
 }
 
 #[component]
 pub fn Card(card_type: CardType) -> impl IntoView {
+    #[allow(unused)]
     let state = expect_context::<Store<CardsState>>();
 
-    let (focused, set_focused) = signal(false);
-    let (pos, set_pos) = signal((0.0, 0.0));
+    let UseMouseReturn { x, y, .. } = use_mouse();
 
-    let card = NodeRef::<Div>::new();
-    let style = use_draggable(card, Position{x: 100.0, y: 100.0});
+    let UseDraggableReturn {
+        style,
+        selected,
+        position,
+        ..
+    } = use_draggable(Position { x: 100.0, y: 100.0 });
+
+    let mouse_up = move |_| {
+        selected.update(|n| *n = false);
+        position.update(|n| {
+            *n = Position {
+                x: x.get(),
+                y: y.get(),
+            }
+        });
+    };
 
     view! {
         <div
-            node_ref=card
             class=move || {
                 format!(
-                    "fixed select-none cursor-move z-{} card {}",
-                    if focused.get() { 31 } else { 30 },
+                    "fixed select-none cursor-move z-30 card {}",
                     card_type.to_string(),
                 )
             }
+            on:mousedown=move |_| selected.update(|n| *n = true)
+            on:mouseup=mouse_up
             style=move || format!("touch-action: none; {}", style())
         ></div>
     }
@@ -124,6 +163,7 @@ pub fn Card(card_type: CardType) -> impl IntoView {
 
 #[component]
 pub fn CardSlot() -> impl IntoView {
+    #[allow(unused)]
     let state = expect_context::<Store<CardsState>>();
 
     let target = NodeRef::<Div>::new();

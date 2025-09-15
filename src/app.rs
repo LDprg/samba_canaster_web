@@ -54,12 +54,5 @@ pub fn App() -> impl IntoView {
 /// Renders the home page of your application.
 #[component]
 fn HomePage() -> impl IntoView {
-    view! {
-        <Card card_type=CardType::Hearts(Rank::Five) />
-        // <Card card_type=CardType::Spades(Rank::Two) />
-        // <Card card_type=CardType::Joker(Color::Red) />
-        // <Card card_type=CardType::Joker(Color::Black) />
-        // <CardSlot />
-        // <CardSlot />
-    }
+    view! { <Card card_type=CardType::Hearts(Rank::Five) /> }
 }

@@ -1,8 +1,5 @@
 use leptos::{component, html::Div, prelude::*, view, IntoView};
-use leptos_use::{
-    core::Position, use_mouse,
-    UseMouseReturn,
-};
+use leptos_use::{core::Position, use_mouse, UseMouseReturn};
 use reactive_stores::Store;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -128,6 +125,7 @@ pub fn Card(card_type: CardType, position: Position) -> impl IntoView {
     view! {
         <div
             class=move || {
+                // TODO: Fix z-index with multiple Cards if needed (to prevent weird card overlapping)
                 format!("fixed select-none cursor-move z-30 card {}", card_type.to_string())
             }
             on:mousedown=move |_| set_selected.update(|n| *n = true)

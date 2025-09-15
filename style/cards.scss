@@ -1,72 +1,72 @@
-$card_width: 100px;
-$card_height: 144px;
+$card_width: 181px;
+$card_height: 251px;
 
 .card {
   width: $card_width;
   height: $card_height;
-  background-image: url("../CuteCards.png");
+  background-image: url("../ClassicCards.png");
 }
 
-.card-slot { background-position: -14*$card_width -0*$card_height; }
+.card-slot { background-position: -2*$card_width -13*$card_height; }
 
-.card-black-joker { background-position: -13*$card_width -2*$card_height; }
-.card-red-joker { background-position: -13*$card_width -3*$card_height; }
+.card-black-joker { background-position: -0*$card_width -13*$card_height; }
+.card-red-joker { background-position: -1*$card_width -13*$card_height; }
 
-.card-black-back { background-position: -14*$card_width -2*$card_height; }
-.card-red-back { background-position: -14*$card_width -3*$card_height; }
+.card-black-back { background-position: -2*$card_width -13*$card_height; }
+.card-red-back { background-position: -3*$card_width -13*$card_height; }
 
-.card-A-spades { background-position: -0*$card_width -0*$card_height; }
-.card-2-spades   { background-position: -1*$card_width -0*$card_height; }
-.card-3-spades   { background-position: -2*$card_width -0*$card_height; }
-.card-4-spades   { background-position: -3*$card_width -0*$card_height; }
-.card-5-spades   { background-position: -4*$card_width -0*$card_height; }
-.card-6-spades   { background-position: -5*$card_width -0*$card_height; }
-.card-7-spades   { background-position: -6*$card_width -0*$card_height; }
-.card-8-spades   { background-position: -7*$card_width -0*$card_height; }
-.card-9-spades   { background-position: -8*$card_width -0*$card_height; }
-.card-10-spades   { background-position: -9*$card_width -0*$card_height; }
-.card-J-spades   { background-position: -10*$card_width -0*$card_height; }
-.card-D-spades   { background-position: -11*$card_width -0*$card_height; }
-.card-K-spades   { background-position: -12*$card_width -0*$card_height; }
+.card-A-spades { background-position: -2*$card_width -0*$card_height; }
+.card-2-spades   { background-position: -2*$card_width -1*$card_height; }
+.card-3-spades   { background-position: -2*$card_width -2*$card_height; }
+.card-4-spades   { background-position: -2*$card_width -3*$card_height; }
+.card-5-spades   { background-position: -2*$card_width -4*$card_height; }
+.card-6-spades   { background-position: -2*$card_width -5*$card_height; }
+.card-7-spades   { background-position: -2*$card_width -6*$card_height; }
+.card-8-spades   { background-position: -2*$card_width -7*$card_height; }
+.card-9-spades   { background-position: -2*$card_width -8*$card_height; }
+.card-10-spades   { background-position: -2*$card_width -9*$card_height; }
+.card-J-spades   { background-position: -2*$card_width -10*$card_height; }
+.card-D-spades   { background-position: -2*$card_width -11*$card_height; }
+.card-K-spades   { background-position: -2*$card_width -12*$card_height; }
 
-.card-A-diamonds { background-position: -0*$card_width -1*$card_height; }
+.card-A-diamonds { background-position: -1*$card_width -0*$card_height; }
 .card-2-diamonds   { background-position: -1*$card_width -1*$card_height; }
-.card-3-diamonds   { background-position: -2*$card_width -1*$card_height; }
-.card-4-diamonds   { background-position: -3*$card_width -1*$card_height; }
-.card-5-diamonds   { background-position: -4*$card_width -1*$card_height; }
-.card-6-diamonds   { background-position: -5*$card_width -1*$card_height; }
-.card-7-diamonds   { background-position: -6*$card_width -1*$card_height; }
-.card-8-diamonds   { background-position: -7*$card_width -1*$card_height; }
-.card-9-diamonds   { background-position: -8*$card_width -1*$card_height; }
-.card-10-diamonds   { background-position: -9*$card_width -1*$card_height; }
-.card-J-diamonds   { background-position: -10*$card_width -1*$card_height; }
-.card-D-diamonds   { background-position: -11*$card_width -1*$card_height; }
-.card-K-diamonds   { background-position: -12*$card_width -1*$card_height; }
+.card-3-diamonds   { background-position: -1*$card_width -2*$card_height; }
+.card-4-diamonds   { background-position: -1*$card_width -3*$card_height; }
+.card-5-diamonds   { background-position: -1*$card_width -4*$card_height; }
+.card-6-diamonds   { background-position: -1*$card_width -5*$card_height; }
+.card-7-diamonds   { background-position: -1*$card_width -6*$card_height; }
+.card-8-diamonds   { background-position: -1*$card_width -7*$card_height; }
+.card-9-diamonds   { background-position: -1*$card_width -8*$card_height; }
+.card-10-diamonds   { background-position: -1*$card_width -9*$card_height; }
+.card-J-diamonds   { background-position: -1*$card_width -10*$card_height; }
+.card-D-diamonds   { background-position: -1*$card_width -11*$card_height; }
+.card-K-diamonds   { background-position: -1*$card_width -12*$card_height; }
 
-.card-A-clubs { background-position: -0*$card_width -2*$card_height; }
-.card-2-clubs   { background-position: -1*$card_width -2*$card_height; }
-.card-3-clubs   { background-position: -2*$card_width -2*$card_height; }
-.card-4-clubs   { background-position: -3*$card_width -2*$card_height; }
-.card-5-clubs   { background-position: -4*$card_width -2*$card_height; }
-.card-6-clubs   { background-position: -5*$card_width -2*$card_height; }
-.card-7-clubs   { background-position: -6*$card_width -2*$card_height; }
-.card-8-clubs   { background-position: -7*$card_width -2*$card_height; }
-.card-9-clubs   { background-position: -8*$card_width -2*$card_height; }
-.card-10-clubs   { background-position: -9*$card_width -2*$card_height; }
-.card-J-clubs   { background-position: -10*$card_width -2*$card_height; }
-.card-D-clubs   { background-position: -11*$card_width -2*$card_height; }
-.card-K-clubs   { background-position: -12*$card_width -2*$card_height; }
+.card-A-clubs { background-position: -3*$card_width -0*$card_height; }
+.card-2-clubs   { background-position: -3*$card_width -1*$card_height; }
+.card-3-clubs   { background-position: -3*$card_width -2*$card_height; }
+.card-4-clubs   { background-position: -3*$card_width -3*$card_height; }
+.card-5-clubs   { background-position: -3*$card_width -4*$card_height; }
+.card-6-clubs   { background-position: -3*$card_width -5*$card_height; }
+.card-7-clubs   { background-position: -3*$card_width -6*$card_height; }
+.card-8-clubs   { background-position: -3*$card_width -7*$card_height; }
+.card-9-clubs   { background-position: -3*$card_width -8*$card_height; }
+.card-10-clubs   { background-position: -3*$card_width -9*$card_height; }
+.card-J-clubs   { background-position: -3*$card_width -10*$card_height; }
+.card-D-clubs   { background-position: -3*$card_width -11*$card_height; }
+.card-K-clubs   { background-position: -3*$card_width -12*$card_height; }
 
-.card-A-hearts { background-position: -0*$card_width -3*$card_height; }
-.card-2-hearts   { background-position: -1*$card_width -3*$card_height; }
-.card-3-hearts   { background-position: -2*$card_width -3*$card_height; }
-.card-4-hearts   { background-position: -3*$card_width -3*$card_height; }
-.card-5-hearts   { background-position: -4*$card_width -3*$card_height; }
-.card-6-hearts   { background-position: -5*$card_width -3*$card_height; }
-.card-7-hearts   { background-position: -6*$card_width -3*$card_height; }
-.card-8-hearts   { background-position: -7*$card_width -3*$card_height; }
-.card-9-hearts   { background-position: -8*$card_width -3*$card_height; }
-.card-10-hearts   { background-position: -9*$card_width -3*$card_height; }
-.card-J-hearts   { background-position: -10*$card_width -3*$card_height; }
-.card-D-hearts   { background-position: -11*$card_width -3*$card_height; }
-.card-K-hearts   { background-position: -12*$card_width -3*$card_height; }
+.card-A-hearts { background-position: -0*$card_width -0*$card_height; }
+.card-2-hearts   { background-position: -0*$card_width -1*$card_height; }
+.card-3-hearts   { background-position: -0*$card_width -2*$card_height; }
+.card-4-hearts   { background-position: -0*$card_width -3*$card_height; }
+.card-5-hearts   { background-position: -0*$card_width -4*$card_height; }
+.card-6-hearts   { background-position: -0*$card_width -5*$card_height; }
+.card-7-hearts   { background-position: -0*$card_width -6*$card_height; }
+.card-8-hearts   { background-position: -0*$card_width -7*$card_height; }
+.card-9-hearts   { background-position: -0*$card_width -8*$card_height; }
+.card-10-hearts   { background-position: -0*$card_width -9*$card_height; }
+.card-J-hearts   { background-position: -0*$card_width -10*$card_height; }
+.card-D-hearts   { background-position: -0*$card_width -11*$card_height; }
+.card-K-hearts   { background-position: -0*$card_width -12*$card_height; }
